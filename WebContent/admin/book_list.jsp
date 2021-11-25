@@ -79,7 +79,7 @@
 		<th width="" scope="col">Isbn</th>
 		<th width="" scope="col">Price</th>
 		<th width="" scope="col">Publish Date</th>
-		<th width="" scope="col">Last update time</th>
+		<th width="" scope="col">Last Update Time</th>
 		<th width="" scope="col">Actions</th>
     </tr>
   </thead>

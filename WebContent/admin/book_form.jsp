@@ -89,7 +89,7 @@
 				</tr>				
 				<tr>
 					<td>Publish Date:</td>
-					<td><input type="date" id="publishdate" name="publishdate" value="<fmt:formatDate pattern='yyyy-MM-dd' value='${book.publishDate}'/>"/> </td>
+					<td><input type="date" id="publishdate" name="publishdate" value="<fmt:formatDate pattern='yyyy-MM-dd' value='${book.publishDate}'/>  "/> </td>
 				</tr>				
 				<tr>
 					<td>Book Image:</td>

@@ -11,26 +11,18 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bookstore.controller.BaseServlet;
 import com.bookstore.dao.CategoryDAO;
 import com.bookstore.entity.Category;
 
 public class CategoryServices {
 	private CategoryDAO categoryDAO;
-
-	//private EntityManagerFactory emf;
-	private EntityManager em;
 		 
 	private HttpServletRequest request;
 	private HttpServletResponse response;
 	
 	
-	public CategoryServices(EntityManager em, 
-			HttpServletRequest request, HttpServletResponse response) {
-		// emf = Persistence.createEntityManagerFactory("BookStoreWebsite");
-		
-		this.em = em;
-		categoryDAO = new CategoryDAO(this.em);
+	public CategoryServices(HttpServletRequest request, HttpServletResponse response) {
+		categoryDAO = new CategoryDAO();
 		this.request=request;
 		this.response=response;
 		
@@ -60,8 +52,11 @@ public class CategoryServices {
 		String name = request.getParameter("name");
 		if(categoryDAO.findByName(name)!=null) {
 			String message = "Category "+ name+" already exists";
-			
+			String typeMessage = "alert";
+			//System.out.println(message);
 			request.setAttribute("message", message);
+			request.setAttribute("typeMessage", typeMessage);
+
 			RequestDispatcher dispatcher = request.getRequestDispatcher("message.jsp");
 			dispatcher.forward(request, response);
 		}

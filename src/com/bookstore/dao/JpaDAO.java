@@ -6,76 +6,135 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 public class JpaDAO <T>{
-	protected EntityManager entityManager;
+	static EntityManagerFactory emf;
+	protected EntityManager em;
 
-	public JpaDAO(EntityManager entityManager) {
-		super();
-		this.entityManager = entityManager;
+	static {
+		emf = Persistence.createEntityManagerFactory("BookStoreWebsite");
+	}
+	
+
+	public JpaDAO() {
+		//super();
 	}	
 	public T create(T t) {
-		entityManager.getTransaction().begin();
+		em = emf.createEntityManager();
 		
-		entityManager.persist(t);
-		entityManager.flush();
-		entityManager.refresh(t);
+		em.getTransaction().begin();
 		
-		entityManager.getTransaction().commit();
+		em.persist(t);
+		em.flush();
+		em.refresh(t);
 		
+		em.getTransaction().commit();
+		
+		em.close();
 		return t;
 	}
 	public T update(T entity) {
-		entityManager.getTransaction().begin();
-		entityManager.merge(entity);
-		entityManager.getTransaction().commit();
+		em = emf.createEntityManager();
+
+		em.getTransaction().begin();
+		em.merge(entity);
+		em.getTransaction().commit();
 		
+		em.close();
 		return entity;
 	}
 	
 	public T find(Class<T> type, Object id) {
-		T entity  = entityManager.find(type, id);
-		if (entity != null) {
-			entityManager.refresh(entity);			
-		}
+		em = emf.createEntityManager();
 
+		T entity  = em.find(type, id);
+		if (entity != null) {
+			em.refresh(entity);			
+		}
+		
+		em.close();
 		return entity;
 	}
 	public void delete(Class<T> type, Object id) {
-		entityManager.getTransaction().begin();
+		em = emf.createEntityManager();
+
+		em.getTransaction().begin();
 		
-		Object ref = entityManager.getReference(type, id);
-		entityManager.remove(ref);
+		Object ref = em.getReference(type, id);
+		em.remove(ref);
 		
-		entityManager.getTransaction().commit();
+		em.getTransaction().commit();
+		
+		em.close();
 	}
 	public List<T> findWithNamedQuery(String namedQuery){
-		Query query = entityManager.createNamedQuery(namedQuery);
-		return query.getResultList();
+		em = emf.createEntityManager();
+		Query query = em.createNamedQuery(namedQuery);
+		List<T> result = query.getResultList();
+
+		em.close();
+		return result;
+	}
+	
+	// overload 
+	public List<T> findWithNamedQuery(String namedQuery, int first, int max){
+		em = emf.createEntityManager();
+		Query query = em.createNamedQuery(namedQuery);
+		
+		query.setFirstResult(first);
+		query.setMaxResults(max);
+		List<T> result = query.getResultList();
+		em.close();
+		return result;
 	}
 	
 	public List<T> findWithNamedQuery(String namedQuery, String paramName, Object paramValue){
-		Query query = entityManager.createNamedQuery(namedQuery);
+		em = emf.createEntityManager();
+
+		Query query = em.createNamedQuery(namedQuery);
 		query.setParameter(paramName, paramValue);
-		return query.getResultList();
+		List<T> result = query.getResultList();
+
+		em.close();
+		return result;
 	}
 	
 	// overload multiple params
 	public List<T> findWithNamedQuery(String namedQuery, Map<String, Object> params){
-		Query query = entityManager.createNamedQuery(namedQuery);
+		em = emf.createEntityManager();
+
+		Query query = em.createNamedQuery(namedQuery);
 		Set<Entry<String, Object>> paramSet = params.entrySet();
 		for(Entry<String, Object> entry:paramSet) {
 			query.setParameter(entry.getKey(), entry.getValue());
 		}
-		return query.getResultList();
+		
+		List<T> result = query.getResultList();
+		em.close();
+		return result;
 	}
+	
+
 	
 	
 	public long countWithNamedQuery(String namedQuery) {
-		Query query = entityManager.createNamedQuery(namedQuery);
+		em = emf.createEntityManager();
+
+		
+		Query query = em.createNamedQuery(namedQuery);
 		long result = (long) query.getSingleResult();
+		
+		em.close();
 		return result;
+	}
+	
+	public void close() {
+		if (emf!=null) {
+			emf.close();
+		}
 	}
 	
 }

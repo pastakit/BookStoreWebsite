@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bookstore.controller.BaseServlet;
 import com.bookstore.service.BookServices;
 
 @WebServlet("/admin/create_book")
@@ -19,12 +18,12 @@ import com.bookstore.service.BookServices;
 		maxFileSize = 1024 * 300, // 300KB
 		maxRequestSize = 1024 * 1000 // 1MB
 )
-public class CreateBookServlet extends BaseServlet {
+public class CreateBookServlet extends HttpServlet {
        
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		BookServices bookServices = new BookServices(em, request, response);
+		BookServices bookServices = new BookServices(request, response);
 		
 		bookServices.createBook();
 

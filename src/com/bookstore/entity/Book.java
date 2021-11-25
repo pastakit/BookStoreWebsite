@@ -4,9 +4,12 @@ package com.bookstore.entity;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Base64;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -63,6 +66,11 @@ public class Book implements java.io.Serializable {
 
 	public Book() {
 	}
+	
+	public Book(Integer id) {
+		super();
+		this.bookId=id;
+	}
 
 	public Book(int bookId, Category category, String title, String author, String description, String isbn,
 			byte[] image, float price, Date publishDate, Date lastUpdateTime) {
@@ -105,8 +113,9 @@ public class Book implements java.io.Serializable {
 	public void setBookId(int bookId) {
 		this.bookId = bookId;
 	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
+	
+	//@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "category_id", nullable = false)
 	public Category getCategory() {
 		return this.category;
@@ -190,9 +199,19 @@ public class Book implements java.io.Serializable {
 		this.lastUpdateTime = lastUpdateTime;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "book")
+	//@OneToMany(fetch = FetchType.LAZY, mappedBy = "book")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "book")
 	public Set<Review> getReviews() {
-		return this.reviews;
+		TreeSet<Review> sortedSet = new  TreeSet<>(new Comparator<Review>() {
+			
+			@Override
+			public int compare(Review r1, Review r2) {
+				return r2.getReviewTime().compareTo(r1.getReviewTime());
+			}
+		});
+		
+		sortedSet.addAll(this.reviews);
+		return sortedSet;
 	}
 
 	public void setReviews(Set<Review> reviews) {
@@ -218,5 +237,67 @@ public class Book implements java.io.Serializable {
 		this.base64Image = base64Image;
 		
 	}
+	
+	@Transient
+	public float getAverageRating() {
+		float result = 0.0f;
+		float sum = 0.0f;
+		
+		if (reviews.isEmpty()) {
+			return 0.0f;
+		}
+		
+		for(Review r:reviews) {
+			sum+=r.getRating();
+		}
+		result = sum/reviews.size();
+		return result;
+	}
+	
+	@Transient
+	public String getRatingString() {
+		String result = "";
+		float rating  =this.getAverageRating();
+		int numberOfStarsOn = (int)rating;
+		for(int i=1;i<=numberOfStarsOn;i++) {
+			result+="on,";
+		}
+		int next = numberOfStarsOn + 1;
+		if (rating>numberOfStarsOn) {
+			next++;
+			result+="half,";
+		}
+		for(int i=next;i<=5;i++) {
+			result+="off,";
+		}
+		
+		result = result.substring(0, result.length()-1);
+		return result;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + bookId;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Book other = (Book) obj;
+		if (bookId != other.bookId)
+			return false;
+		return true;
+	}
+	
+	
+	
 
 }

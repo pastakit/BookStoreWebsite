@@ -2,7 +2,9 @@
 
 <div align = "center"> 	
 	<div>
+		<a href="${pageContext.request.contextPath}/">
 		<img class="banner" alt="logo_pic" src="images/logo7.jpg" />
+		</a>
 	</div>
 	<br><br>
 	
@@ -15,12 +17,24 @@
       <input class="form-control" name="keyword" type="search" placeholder="Search" aria-label="Search">&nbsp;
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       	&nbsp;&nbsp;&nbsp;
-      	<a href="login">Login</a>&nbsp;|&nbsp;
-		<a href="register">Register</a>&nbsp;|&nbsp; 
-		<a href="view_cart">Cart</a>&nbsp
+      	
+       	<c:if test="${loggedCustomer==null}">
+       	      	<a href="login">Login</a>&nbsp;|&nbsp;
+				<a href="register">Register</a>&nbsp;|&nbsp; 
+       	</c:if>
+       	
+       	<c:if test="${loggedCustomer!=null}">
+       	      	<a href="view_profile">Welcome, ${loggedCustomer.getEmail()}</a>&nbsp;|&nbsp;
+				<a href="">My Orders</a>&nbsp;|&nbsp;
+				<a href="logout">Logout</a>&nbsp;|&nbsp; 	
+       	</c:if>
+
+		<a href="view_cart">Cart</a>&nbsp;
     </form>
 		
 	</div>
+	
+	
 	
 	<div>
 		<c:forEach var="category" items="${listCategory}" varStatus="status">
@@ -30,5 +44,6 @@
 			</c:if>	
 		</c:forEach>
 	</div>
+	
 	
 </div>

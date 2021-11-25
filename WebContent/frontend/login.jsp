@@ -10,8 +10,8 @@
 	<jsp:directive.include file="header.jsp" />
 
 	<div align = "center"> 
-		<h2>Login here:</h2>
-		<form action="">
+		<h2>Login here hehe:</h2>
+		<form action="login" method="post">
 			Email: <input type="text" /><br/>
 			Password: <input type="password" /><br/>
 			<input type="submit" value="Login" />

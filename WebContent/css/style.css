@@ -47,6 +47,11 @@
 	margin:0 auto;
 }
 
+#cart_list{
+	width:60%;
+	margin:0 auto;
+}
+
 #category_list{
 	width:50%;
 	margin:0 auto;
@@ -79,6 +84,11 @@
   display: -ms-flexbox;
   display: flex;
 
+}
+
+.error{
+	color:red;
+	margin: 5px;
 }
 
 

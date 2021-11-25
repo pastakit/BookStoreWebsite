@@ -10,6 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -21,6 +23,13 @@ import javax.persistence.UniqueConstraint;
  */
 @Entity
 @Table(name = "customer", catalog = "bookstoredb", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+@NamedQueries({
+	@NamedQuery(name="Customer.findAll", query="select c from Customer c order by c.fullName"),
+	@NamedQuery(name="Customer.countAll", query="select count(*) from Customer c"),
+	@NamedQuery(name="Customer.findByEmail", query="select c from Customer c where c.email = :email"),
+	@NamedQuery(name="Customer.checkLogin", query="select c from Customer c where c.email = :email and c.password= :password")
+
+})
 public class Customer implements java.io.Serializable {
 
 	private Integer customerId;
@@ -33,8 +42,8 @@ public class Customer implements java.io.Serializable {
 	private String zipCode;
 	private String password;
 	private Date registerDay;
-	private String customercol;
-	private String customercol1;
+	//private String customercol;
+	//private String customercol1;
 	private Set<Review> reviews = new HashSet<Review>(0);
 	private Set<BookOrder> bookOrders = new HashSet<BookOrder>(0);
 
@@ -42,7 +51,7 @@ public class Customer implements java.io.Serializable {
 	}
 
 	public Customer(String email, String fullName, String address, String city, String country, String phoneNumber,
-			String zipCode, String password, Date registerDay, String customercol, String customercol1) {
+			String zipCode, String password, Date registerDay) {
 		this.email = email;
 		this.fullName = fullName;
 		this.address = address;
@@ -52,12 +61,12 @@ public class Customer implements java.io.Serializable {
 		this.zipCode = zipCode;
 		this.password = password;
 		this.registerDay = registerDay;
-		this.customercol = customercol;
-		this.customercol1 = customercol1;
+		//this.customercol = customercol;
+		//this.customercol1 = customercol1;
 	}
 
 	public Customer(String email, String fullName, String address, String city, String country, String phoneNumber,
-			String zipCode, String password, Date registerDay, String customercol, String customercol1,
+			String zipCode, String password, Date registerDay, 
 			Set<Review> reviews, Set<BookOrder> bookOrders) {
 		this.email = email;
 		this.fullName = fullName;
@@ -68,8 +77,8 @@ public class Customer implements java.io.Serializable {
 		this.zipCode = zipCode;
 		this.password = password;
 		this.registerDay = registerDay;
-		this.customercol = customercol;
-		this.customercol1 = customercol1;
+		//this.customercol = customercol;
+		//this.customercol1 = customercol1;
 		this.reviews = reviews;
 		this.bookOrders = bookOrders;
 	}
@@ -168,23 +177,6 @@ public class Customer implements java.io.Serializable {
 		this.registerDay = registerDay;
 	}
 
-	@Column(name = "customercol", nullable = false, length = 45)
-	public String getCustomercol() {
-		return this.customercol;
-	}
-
-	public void setCustomercol(String customercol) {
-		this.customercol = customercol;
-	}
-
-	@Column(name = "customercol1", nullable = false, length = 45)
-	public String getCustomercol1() {
-		return this.customercol1;
-	}
-
-	public void setCustomercol1(String customercol1) {
-		this.customercol1 = customercol1;
-	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
 	public Set<Review> getReviews() {

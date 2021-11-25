@@ -7,8 +7,8 @@ import javax.persistence.EntityManager;
 import com.bookstore.entity.Category;
 
 public class CategoryDAO extends JpaDAO<Category> implements GenericDAO<Category>{
-	public CategoryDAO(EntityManager em) {
-		super(em);
+	public CategoryDAO() {
+		//super();
 	}
 	
 	@Override

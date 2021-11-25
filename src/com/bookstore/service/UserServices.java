@@ -19,18 +19,14 @@ import com.bookstore.entity.Users;
 
 public class UserServices {
 	private UserDAO userDAO;
-	//private EntityManagerFactory emf;
-	private EntityManager em;
 	private HttpServletRequest request;
 	private HttpServletResponse response;
 	
-	public UserServices(EntityManager em, HttpServletRequest request, HttpServletResponse response) {
+	public UserServices( HttpServletRequest request, HttpServletResponse response) {
 		this.request = request;
 		this.response = response;
 		
-		//emf = Persistence.createEntityManagerFactory("BookStoreWebsite");
-		this.em = em;
-		userDAO = new UserDAO(this.em);
+		userDAO = new UserDAO();
 	}
 	
 	

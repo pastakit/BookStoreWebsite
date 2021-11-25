@@ -26,7 +26,9 @@
 						<br>
 						<span class="book_col_title"><a href="view_book?id=${book.bookId}">${book.title}</a></span>
 						<br>
-						<span class="book_col_rating">Rating 5*</span>
+						<span class="book_col_rating">
+							<jsp:directive.include file="book_rating.jsp"/>
+						</span>
 						<br>
 						<span class="book_col_author">by ${book.author}</span>
 						<br>

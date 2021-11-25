@@ -12,9 +12,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-/**
- * Servlet Filter implementation class AdminLoginFilter
- */
+
 @WebFilter("/admin/*")
 public class AdminLoginFilter implements Filter {
 
@@ -32,7 +30,7 @@ public class AdminLoginFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
-		System.out.println("doFilter is invoked");
+		System.out.println("---AdminLoginFilter doFilter -----");
 
 		HttpServletRequest httpRequest = (HttpServletRequest)request;
 		HttpSession session=  httpRequest.getSession(false); // false: if not exists=> null

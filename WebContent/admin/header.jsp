@@ -3,7 +3,9 @@
 
 <div align = "center"> 	
 	<div>
+		<a href="${pageContext.request.contextPath}/admin/">
 		<img class="banner img-fluid"  alt="admin_logo_pic" src="../images/logo7.jpg" />
+		</a>
 	</div>
 		<br><br>
 	<div>
@@ -33,10 +35,10 @@
     <a class="nav-link active m-1" href="list_books">Books</a>
   </li>
     <li class="nav-item">
-    <a class="nav-link active m-1" href="list_users">Customers</a>
+    <a class="nav-link active m-1" href="list_customers">Customers</a>
   </li>
     <li class="nav-item">
-    <a class="nav-link active m-1" href="list_users">Reviews</a>
+    <a class="nav-link active m-1" href="list_reviews">Reviews</a>
   </li>
       <li class="nav-item">
     <a class="nav-link active m-1" href="list_users" >Orders</a>

@@ -20,11 +20,14 @@
 			
 				<c:forEach var = "book" items="${listNewBooks}">
 					<div class="col-3 book_col align-items-end" >
-						<img width = "84" height="110" alt="thumbnail" src="data:image/jpg;base64,${book.base64Image}">&nbsp;
+						&nbsp;
+						<a href="view_book?id=${book.bookId}"><img width = "84" height="110" alt="thumbnail" src="data:image/jpg;base64,${book.base64Image}"></a>
 						<br>
-						<span class="book_col_title">${book.title}</span>
+						<span class="book_col_title"><a href="view_book?id=${book.bookId}">${book.title}</a></span>
 						<br>
-						<span class="book_col_rating">Rating 5*</span>
+						<span class="book_col_rating">
+							<jsp:directive.include file="book_rating.jsp"/>
+						</span>
 						<br>
 						<span class="book_col_author">by ${book.author}</span>
 						<br>

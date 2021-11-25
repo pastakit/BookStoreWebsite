@@ -7,17 +7,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bookstore.controller.BaseServlet;
 import com.bookstore.service.BookServices;
 
 
 @WebServlet("/admin/new_book")
-public class NewBookServlet extends BaseServlet {
+public class NewBookServlet extends HttpServlet {
        
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		BookServices bookServices = new BookServices(em, request, response);
+		BookServices bookServices = new BookServices(request, response);
 		bookServices.showBookNewForm();
 	}
 

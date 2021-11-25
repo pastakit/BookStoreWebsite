@@ -7,23 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bookstore.controller.BaseServlet;
 import com.bookstore.service.CategoryServices;
 
 
 @WebServlet("/admin/update_category")
-public class UpdateCategory extends BaseServlet {
-       
-	public UpdateCategory() {
-		
-	}
-
+public class UpdateCategory extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
-		CategoryServices categoryServices = new CategoryServices(em, request, response);
+		CategoryServices categoryServices = new CategoryServices( request, response);
 		categoryServices.updateCategory();
 		
 	}

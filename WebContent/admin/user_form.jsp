@@ -11,8 +11,12 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
 <link rel="stylesheet" href="../css/style.css">
+<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../js/jquery.validate.min.js"></script>
+
 </head>
 <body>
+	
 	<jsp:directive.include file="header.jsp" />
 
 	<div align="center">
@@ -30,12 +34,12 @@
 
 	<div align="center">
 		<c:if test="${user!=null}">
-		<form action="update_user" method="post" onsubmit="return validateFormInput()">
+		<form action="update_user" method="post" id="userForm">
 		<input type="hidden" name="userId" value="${user.userId}">
 		</c:if>	
 		
 		<c:if test="${user==null}">
-		<form action="create_user" method="post" onsubmit="return validateFormInput()">
+		<form action="create_user" method="post" id="userForm">
 		</c:if>	
 			
 			<table>
@@ -70,28 +74,45 @@
 
 <script type="text/javascript">
 
-	function validateFormInput(){
-		var fieldEmail = document.getElementById("email");
-		var fieldFullName = document.getElementById("fullname");
-		var fieldPassWord = document.getElementById("password");
 
-		if (fieldEmail.value.length == 0){
-			alert("Email is requied");
-			fieldEmail.focus();
-			return false;
-		}
-		if (fieldFullName.value.length == 0){
-			alert("Full name is requied");
-			fieldFullName.focus();
-			return false;
-		}
-		if (fieldPassWord.value.length == 0){
-			alert("Password is requied");
-			fieldPassWord.focus();
-			return false;
-		}
-		return true;
-	}
+	$(document).ready(function() {
+		$("#userForm").validate({
+			rules:{
+				email:"required",
+				fullname:"required",
+				password:"required"
+			},
+			messages:{
+				email:"please enter email",
+				fullname:"please enter full name",
+				password:"please enter password"
+
+			}
+		})
+	})	
+
+// 	function validateFormInput(){
+// 		var fieldEmail = document.getElementById("email");
+// 		var fieldFullName = document.getElementById("fullname");
+// 		var fieldPassWord = document.getElementById("password");
+
+// 		if (fieldEmail.value.length == 0){
+// 			alert("Email is requied");
+// 			fieldEmail.focus();
+// 			return false;
+// 		}
+// 		if (fieldFullName.value.length == 0){
+// 			alert("Full name is requied");
+// 			fieldFullName.focus();
+// 			return false;
+// 		}
+// 		if (fieldPassWord.value.length == 0){
+// 			alert("Password is requied");
+// 			fieldPassWord.focus();
+// 			return false;
+// 		}
+// 		return true;
+// 	}
 </script>
 
 </html>

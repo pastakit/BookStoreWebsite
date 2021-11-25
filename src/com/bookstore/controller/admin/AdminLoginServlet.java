@@ -7,11 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bookstore.controller.BaseServlet;
 import com.bookstore.service.UserServices;
 
 @WebServlet("/admin/login")
-public class AdminLoginServlet extends BaseServlet {
+public class AdminLoginServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -19,7 +18,7 @@ public class AdminLoginServlet extends BaseServlet {
 //		String password = request.getParameter("password");
 //		
 //		System.out.println("Email:"+ email+ "Password:"+password);
-		UserServices userServices = new UserServices(em, request, response);
+		UserServices userServices = new UserServices(request, response);
 		userServices.login();
 		
 		

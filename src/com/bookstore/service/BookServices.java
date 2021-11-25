@@ -26,18 +26,16 @@ public class BookServices {
 	
 	private CategoryDAO categoryDAO;
 	
-	private EntityManager em;
 	
 	private HttpServletRequest request;
 	private HttpServletResponse response;
 	
-	public BookServices(EntityManager em, HttpServletRequest request, HttpServletResponse response){
-		this.em = em;
+	public BookServices(HttpServletRequest request, HttpServletResponse response){
 		this.request = request;
 		this.response = response;
 		
-		bookDAO = new BookDAO(this.em);
-		categoryDAO = new CategoryDAO(this.em);
+		bookDAO = new BookDAO();
+		categoryDAO = new CategoryDAO();
 	}
 	
 	public void listBook(String message) throws IOException, ServletException{
@@ -96,7 +94,7 @@ public class BookServices {
 		} catch (ParseException e) {	
 			// TODO: handle exception
 			e.printStackTrace();
-			//throw new ServletException("Error parsing publish date (format is yyyy-MM-dd)");
+			throw new ServletException("Error parsing publish date (format is yyyy-MM-dd)");
 		}
 		
 		System.out.println("categoryId:"+categoryId);
@@ -116,8 +114,6 @@ public class BookServices {
 
 		Category category = categoryDAO.get(categoryId);
 		newBook.setCategory(category);
-		
-		
 		
 		Part part = request.getPart("image");
 		
@@ -165,8 +161,6 @@ public class BookServices {
 
 	}
 	
-	
-	
 	public void updateBook() throws IOException, ServletException{
 		System.out.println("updateBook() function");
 		Integer bookId = Integer.parseInt(request.getParameter("bookId"));
@@ -186,7 +180,7 @@ public class BookServices {
 		} catch (ParseException e) {	
 			// TODO: handle exception
 			e.printStackTrace();
-			//throw new ServletException("Error parsing publish date (format is yyyy-MM-dd)");
+			throw new ServletException("Error parsing publish date (format is yyyy-MM-dd)");
 		}
 		
 		
