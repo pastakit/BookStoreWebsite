@@ -248,4 +248,21 @@ public class BookDAOTest{
 		
 		assertEquals(expected, actual);
 	}
+	
+	@Test
+	public void testListBestSelling() {
+		List<Book> list= bookDAO.listBestSelling();
+		
+		
+		assertEquals(31, list.get(0).getBookId());
+		assertEquals(33, list.get(3).getBookId());
+	}
+	
+	@Test
+	public void testMostFavored() {
+		List<Book> list= bookDAO.mostFavoredBook();
+		
+		
+		assertEquals(32, list.get(0).getBookId());
+	}
 }

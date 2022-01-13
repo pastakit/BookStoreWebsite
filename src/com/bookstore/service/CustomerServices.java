@@ -282,9 +282,7 @@ public class CustomerServices {
 			
 			else {
 				showCustomerProfile();
-
 			}
-			
 			
 		}else {
 			showLogin();

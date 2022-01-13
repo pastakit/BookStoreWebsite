@@ -84,7 +84,7 @@
 									<td></td>
 									<td><button type="submit">Update</button></td>
 									<td><a href="${pageContext.request.contextPath}/">Continue Shopping</a></td>
-									<td><a href="">Checkout</a></td>
+									<td><a href="checkout">Checkout</a></td>
 								</tr>
 						</tbody>
 					</table>
@@ -117,7 +117,7 @@
 						required: "Please enter quantity",
 						number:"quantity must be a number",
 						min:"quantity must be >=1"
-					}
+					},
 					</c:forEach>
 				}
 			});
@@ -126,8 +126,6 @@
 			$("#clearCart").click(function() {
 				window.location = "clear_cart";
 			});
-			
-			
 			
 		});
 	

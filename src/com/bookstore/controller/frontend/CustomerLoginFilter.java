@@ -16,7 +16,8 @@ import javax.servlet.http.HttpSession;
 @WebFilter("/*")
 public class CustomerLoginFilter implements Filter {
 	private static final String[] loginRequiredURLs = {
-			"/view_profile", "/write_review"
+			"/view_profile", "/write_review", "/checkout","/place_order", 
+			"/view_orders", "/view_order"
 	};
 
     public CustomerLoginFilter() {
@@ -44,8 +45,10 @@ public class CustomerLoginFilter implements Filter {
 		
 		String requestURL = httpRequest.getRequestURL().toString();
 		String requestURI = httpRequest.getRequestURI().toString();
+		String fullRequestUrl = requestURL + "?"+httpRequest.getQueryString();
 		System.out.println("requestURL:"+requestURL);
 		System.out.println("requestURI:"+requestURI);
+		System.out.println("fullRequestUrl:"+fullRequestUrl);
 
 		
 		if (path.startsWith("/admin/")) {

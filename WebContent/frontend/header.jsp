@@ -25,7 +25,7 @@
        	
        	<c:if test="${loggedCustomer!=null}">
        	      	<a href="view_profile">Welcome, ${loggedCustomer.getEmail()}</a>&nbsp;|&nbsp;
-				<a href="">My Orders</a>&nbsp;|&nbsp;
+				<a href="view_orders">My Orders</a>&nbsp;|&nbsp;
 				<a href="logout">Logout</a>&nbsp;|&nbsp; 	
        	</c:if>
 
@@ -33,8 +33,6 @@
     </form>
 		
 	</div>
-	
-	
 	
 	<div>
 		<c:forEach var="category" items="${listCategory}" varStatus="status">
@@ -44,6 +42,5 @@
 			</c:if>	
 		</c:forEach>
 	</div>
-	
-	
+		
 </div>

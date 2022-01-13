@@ -19,10 +19,10 @@
 		<div align="center">
 			<hr width="60%">
 			<h2>Quick actions:</h2>
-			<a href="create_book">New Book</a> 
-			<a href="create_user">New User</a>
-			<a href="create_category">New Category</a> 
-			<a href="create_customer">New Customer</a>
+			<a href="new_book">New Book</a> 
+			<a href="user_form.jsp">New User</a>
+			<a href="category_form.jsp">New Category</a> 
+			<a href="new_customer">New Customer</a>
 	
 		</div>
 

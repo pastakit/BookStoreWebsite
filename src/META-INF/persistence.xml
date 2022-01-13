@@ -7,10 +7,14 @@
 
 	<persistence-unit name="BookStoreWebsite">
 		<properties>
-			<property name="javax.persistence.jdbc.url"
-				value="jdbc:mysql://localhost:3306/bookstoredb?autoReconnect=true" />
+<!-- 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://us-cdbr-east-05.cleardb.net/heroku_422e2b71b63ac4f?autoReconnect=true" />				 -->
+<!-- 			<property name="javax.persistence.jdbc.user" value="b1ba6b9039392e" /> -->
+<!-- 			<property name="javax.persistence.jdbc.password" value="03267214" /> -->
+
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/bookstoredb?autoReconnect=true" />
 			<property name="javax.persistence.jdbc.user" value="root" />
 			<property name="javax.persistence.jdbc.password" value="Nap2112Kk" />
+
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />

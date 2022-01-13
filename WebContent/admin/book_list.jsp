@@ -11,6 +11,9 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
 <link rel="stylesheet" href="../css/style.css">
+
+<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../js/jquery.validate.min.js"></script>
 </head>
 <body>
 
@@ -106,18 +109,32 @@
 					
 					<td>
 						<a href="edit_book?id=${book.bookId}">Edit</a> 
-						<a href="delete_book?id=${book.bookId}">Delete</a>
-
+						<a href="javascript:void(0);" class="deleteLink" id="${book.bookId}" ">Delete</a>
 					</td>
 				</tr>
 				
 			</c:forEach>
-    
   </tbody>
 </table>
 </div>
 
 	<jsp:directive.include file="footer.jsp" />
+	
+<script type="text/javascript">
+
+	$(document).ready(function() {
+		$(".deleteLink").each(function(){
+			$(this).on("click", function(){
+ 				bookId = $(this).attr("id");
+ 				if ( confirm('Are you sure to delete the Book with ID '+bookId)){
+ 					window.location='deleteee_book?id='+bookId;
+ 				}
+			})
+		})
+	})
+	
+
+</script>
 	
 </body>
 </html>

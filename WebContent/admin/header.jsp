@@ -41,7 +41,7 @@
     <a class="nav-link active m-1" href="list_reviews">Reviews</a>
   </li>
       <li class="nav-item">
-    <a class="nav-link active m-1" href="list_users" >Orders</a>
+    <a class="nav-link active m-1" href="list_orders" >Orders</a>
   </li>
 </ul>
 

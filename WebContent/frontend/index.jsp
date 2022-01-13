@@ -15,7 +15,7 @@
 	
 	<div align="center">
 		<h2>New Books:</h2>
-				<div class="container">
+		<div class="container">
 			<div class="row">
 			
 				<c:forEach var = "book" items="${listNewBooks}">
@@ -32,7 +32,6 @@
 						<span class="book_col_author">by ${book.author}</span>
 						<br>
 						<span class="book_col_price">$${book.price}</span>
-						
 						<br>
 					</div>
 	
@@ -41,7 +40,58 @@
 			</div>
 		</div>
 		<h2>Best-selling books</h2>
+		<div class="container">
+			<div class="row">
+			
+				<c:forEach var = "book" items="${listBestSelling}">
+					<div class="col-3 book_col align-items-end" >
+						&nbsp;
+						<a href="view_book?id=${book.bookId}"><img width = "84" height="110" alt="thumbnail" src="data:image/jpg;base64,${book.base64Image}"></a>
+						<br>
+						<span class="book_col_title"><a href="view_book?id=${book.bookId}">${book.title}</a></span>
+						<br>
+						<span class="book_col_rating">
+							<jsp:directive.include file="book_rating.jsp"/>
+						</span>
+						<br>
+						<span class="book_col_author">by ${book.author}</span>
+						<br>
+						<span class="book_col_price">$${book.price}</span>
+						<br>
+					</div>
+	
+				</c:forEach>
+
+			</div>
+		</div>		
+		
 		<h2>Most-favored books</h2>
+		<div class="container">
+			<div class="row">
+			
+				<c:forEach var = "book" items="${listMostFavored}">
+					<div class="col-3 book_col align-items-end" >
+						&nbsp;
+						<a href="view_book?id=${book.bookId}"><img width = "84" height="110" alt="thumbnail" src="data:image/jpg;base64,${book.base64Image}"></a>
+						<br>
+						<span class="book_col_title"><a href="view_book?id=${book.bookId}">${book.title}</a></span>
+						<br>
+						<span class="book_col_rating">
+							<jsp:directive.include file="book_rating.jsp"/>
+						</span>
+						<br>
+						<span class="book_col_author">by ${book.author}</span>
+						<br>
+						<span class="book_col_price">$${book.price}</span>
+						<br>
+					</div>
+	
+				</c:forEach>
+
+			</div>
+		</div>		
+				
+		
 	</div>
 
 	<jsp:directive.include file="footer.jsp" />

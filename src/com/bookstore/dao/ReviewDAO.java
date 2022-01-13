@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.bookstore.entity.Book;
 import com.bookstore.entity.Review;
 
 public class ReviewDAO extends JpaDAO<Review> implements GenericDAO<Review>{
@@ -53,5 +54,7 @@ public class ReviewDAO extends JpaDAO<Review> implements GenericDAO<Review>{
 		}
 		return null;
 	}
+	
+
 	
 }

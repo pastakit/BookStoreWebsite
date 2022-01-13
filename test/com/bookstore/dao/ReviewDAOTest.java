@@ -82,6 +82,7 @@ public class ReviewDAOTest {
 		assertTrue(size==1);
 	}
 	
+	
 	@Test
 	public void testFindByCustomerAndBook() {
 		int bookId = 31;
@@ -95,5 +96,7 @@ public class ReviewDAOTest {
 		
 		assertEquals(expected, actual);
 	}
+	
+
 
 }

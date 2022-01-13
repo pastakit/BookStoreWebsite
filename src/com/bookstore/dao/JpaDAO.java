@@ -18,7 +18,6 @@ public class JpaDAO <T>{
 		emf = Persistence.createEntityManagerFactory("BookStoreWebsite");
 	}
 	
-
 	public JpaDAO() {
 		//super();
 	}	

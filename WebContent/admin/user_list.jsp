@@ -11,6 +11,9 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
 <link rel="stylesheet" href="../css/style.css">
+
+<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../js/jquery.validate.min.js"></script>
 </head>
 <body>
 	<jsp:directive.include file="header.jsp" />
@@ -80,7 +83,8 @@
 			<td>${user.fullName}</td>
 			<td>
 				<a href="edit_user?id=${user.userId}">Edit</a> 
-				<a href="delete_user?id=${user.userId}">Delete</a>
+				<a href="javascript:void(0);" class="deleteLink" id="${user.userId}">Delete</a>
+				
 			</td>
 	    </tr>
     </c:forEach>
@@ -90,6 +94,20 @@
 </div>
 	<jsp:directive.include file="footer.jsp" />
 
-
+	<script type="text/javascript">
+	
+		$(document).ready(function() {
+			$(".deleteLink").each(function(){
+				$(this).on("click", function(){
+	 				userId = $(this).attr("id");
+	 				if ( confirm('Are you sure to delete the user with ID '+userId)){
+	 					window.location='delete_user?id='+userId;
+	 				}
+				})
+			})
+		})
+		
+	
+	</script>
 </body>
 </html>
