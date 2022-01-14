@@ -115,6 +115,7 @@ public class OrderServices {
 		orderDAO.create(order);
 		
 		String message = "Thank for your order, this will be deliveried soon";
+		cart.clear();
 		request.setAttribute("message", message);
 		request.setAttribute("typeMessage","success");
 		
@@ -227,6 +228,6 @@ public class OrderServices {
 //
 //		}
 		
-		this.listOrder();
+		this.listOrder("Updated Order successfully");
 	}
 }

@@ -69,7 +69,7 @@
 						
 						<div class="row">
 							<span>
-								by ${review.customer.fullName} on ${review.reviewTime}
+								by <i>${review.customer.fullName}</i> on ${review.reviewTime}
 							</span>
 						</div>
 						
@@ -89,7 +89,6 @@
 					</div>
 
 			    </div>
-	fwe
 			  </div>
 			  
 			  

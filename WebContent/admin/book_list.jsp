@@ -21,7 +21,7 @@
 
 	<div align="center">
 		<h2>Books Management</h2>
-		<a href="new_book">Create New Book</a>
+		<a href="new_book" class="admin_create_link">Create New Book</a>
 	</div>
 		<br>
 	

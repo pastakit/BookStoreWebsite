@@ -13,7 +13,7 @@
 
 </head>
 <body>
-
+	<div class="container-xxl">  
 		<jsp:directive.include file="header.jsp" />
 		
 		<div align="center">
@@ -47,7 +47,7 @@
 
 		<jsp:directive.include file="footer.jsp" />
 
-
+</div>
 
 </body>
 </html>

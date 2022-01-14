@@ -156,6 +156,9 @@ public class BookServices {
 	
 	public void deleteBook() throws ServletException, IOException{
 		Integer idToDelete = Integer.parseInt(request.getParameter("id"));
+		
+		
+		
 		bookDAO.delete(idToDelete);
 		listBook("Deleted Book with ID="+idToDelete);
 

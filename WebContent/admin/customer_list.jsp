@@ -17,7 +17,7 @@
 
 	<div align="center">
 		<h2>Customers Management</h2>
-		<a href="new_customer">Create new Customer</a>
+		<a href="new_customer" class="admin_create_link">Create new Customer</a>
 	</div>
 	<br>
 

@@ -28,18 +28,9 @@
 		</c:if>
 		
 		<c:if test="${cartVariable.totalItems>0}">
-			cartVariable
+			
 			<div id="cart_list">
 				<form method="post" action="update_cart"  id="cartForm">
-<!-- 					<table> -->
-<!-- 						<tr> -->
-<!-- 							<th>No</th> -->
-<!-- 							<th>Book</th> -->
-<!-- 							<th>Quantity</th> -->
-<!-- 							<th>Price</th> -->
-<!-- 							<th>Subtotal</th> -->
-<!-- 						</tr> -->
-<!-- 					</table> -->
 					
 					<table class="table table-striped">
 						<thead>

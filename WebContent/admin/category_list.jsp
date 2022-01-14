@@ -18,7 +18,7 @@
 
 	<div align="center">
 		<h2>Cagories Management</h2>
-		<a href="category_form.jsp">Create New Cateogry</a>
+		<a href="category_form.jsp" class="admin_create_link">Create New Cateogry</a>
 	</div>
 		<br>
 	

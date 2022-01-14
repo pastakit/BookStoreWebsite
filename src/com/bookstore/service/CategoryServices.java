@@ -2,6 +2,7 @@ package com.bookstore.service;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -11,18 +12,22 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bookstore.dao.BookDAO;
 import com.bookstore.dao.CategoryDAO;
+import com.bookstore.entity.Book;
 import com.bookstore.entity.Category;
 
 public class CategoryServices {
 	private CategoryDAO categoryDAO;
-		 
+	private BookDAO bookDAO;
+	
 	private HttpServletRequest request;
 	private HttpServletResponse response;
 	
 	
 	public CategoryServices(HttpServletRequest request, HttpServletResponse response) {
 		categoryDAO = new CategoryDAO();
+		bookDAO = new BookDAO();
 		this.request=request;
 		this.response=response;
 		
@@ -115,11 +120,24 @@ public class CategoryServices {
 	public void deleteCategogy() throws ServletException, IOException {
 		Integer cateId = Integer.parseInt(request.getParameter("id"));
 		
+		System.out.println("deleteCategogy");
 		// can not delete
+		List<Book> booksByCategory = bookDAO.listByCategory(cateId);
 		
+		int numBooks = booksByCategory.size();
+		if(numBooks>0) {
+			request.setAttribute("message", "category id " +cateId+"has some books belong to");
+			request.setAttribute("typeMessage", "alert");
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("message.jsp");
+			dispatcher.forward(request, response);
+		}
+		else {
+			categoryDAO.delete(cateId);
+			listCategory("Deleted Category with ID="+cateId);
+		}
 		
-		categoryDAO.delete(cateId);
-		listCategory("Deleted Category with ID="+cateId);
+
 		
 		
 	}

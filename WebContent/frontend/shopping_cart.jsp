@@ -76,6 +76,8 @@
 									<td></td>
 									<td></td>
 									<td>${cartVariable.totalQuantity} Books</td>
+									<td></td>
+									
 									<td><fmt:formatNumber value="${cartVariable.totalAmount}" type="currency"/></td>
 									
 								</tr>

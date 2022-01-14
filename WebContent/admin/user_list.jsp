@@ -20,43 +20,11 @@
 
 	<div align="center">
 		<h2>Users Management</h2>
-		<a href="user_form.jsp">Create new User</a>
+		<a href="user_form.jsp" class="admin_create_link">Create new User</a>
+		
+
 	</div>
 	<br>
-
-<!-- 	<div align="center"> -->
-<%-- 		<h4><i>${message}</i></h4> --%>
-<!-- 	</div> -->
-
-<!-- 	<div align="center"> -->
-<!-- 		<table border="1"> -->
-<!-- 			<tr> -->
-<!-- 				<th>Index</th> -->
-<!-- 				<th>ID</th> -->
-<!-- 				<th>Email</th> -->
-<!-- 				<th>Full Name</th> -->
-<!-- 				<th>Actions</th> -->
-<!-- 			</tr> -->
-
-<%-- 			<c:forEach var="user" items="${listUsers}" varStatus="status"> --%>
-<!-- 				<tr> -->
-<%-- 					<td>${status.index }</td> --%>
-<%-- 					<td>${user.userId}</td> --%>
-<%-- 					<td>${user.email}</td> --%>
-<%-- 					<td>${user.fullName}</td> --%>
-<!-- 					<td> -->
-					
-<%-- 					<a href="edit_user?id=${user.userId}">Edit</a>  --%>
-<%-- 					<a href="delete_user?id=${user.userId}">Delete</a> --%>
-
-<!-- 					</td> -->
-<!-- 				</tr> -->
-				
-<%-- 			</c:forEach> --%>
-
-<!-- 		</table> -->
-
-<!-- 	</div> -->
 
 <c:if test="${message!=null}">
 <div class="alert alert-success text-center" role="alert">

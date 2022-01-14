@@ -18,24 +18,24 @@
 
 	<div align="center">
 		
-		<c:if test="${book!=null}">
+		<c:if test="${requestScope.book!=null}">
 			Edit Book
 		</c:if>
 		
 		
-		<c:if test="${book==null}">
+		<c:if test="${requestScope.book==null}">
 			Create New Book
 		</c:if>
 
 	</div>
 
 	<div align="center">
-		<c:if test="${book!=null}">
+		<c:if test="${requestScope.book!=null}">
 		<form action="update_book" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="bookId" value="${book.bookId}">
+		<input type="hidden" name="bookId" value="${requestScope.book.bookId}">
 		</c:if>	
 		
-		<c:if test="${book==null}">
+		<c:if test="${requestScope.book==null}">
 		<form action="create_book" method="post"  enctype="multipart/form-data">
 		</c:if>	
 			
@@ -61,7 +61,7 @@
 						<select name="category" id="category">
 							<c:forEach var="cate" items="${listCategory}" varStatus="status">
 								<c:choose>
-									<c:when test="${cate.getCategoryId()==book.getCategory().getCategoryId()}">
+									<c:when test="${cate.getCategoryId()==requestScope.book.getCategory().getCategoryId()}">
 										<option value="${cate.categoryId}" selected="selected">${cate.name}</option>
 									
 									</c:when>
@@ -77,31 +77,31 @@
 				
 				<tr>
 					<td>Title:</td>
-					<td><input type="text" id="title" name="title" size="20" value="${book.title}" /></td>
+					<td><input type="text" id="title" name="title" size="20" value="${requestScope.book.title}" /></td>
 				</tr>
 				<tr>
 					<td>Author:</td>
-					<td><input type="text" id="author" name="author" size="20" value="${book.author}" /></td>
+					<td><input type="text" id="author" name="author" size="20" value="${requestScope.book.author}" /></td>
 				</tr>				
 				<tr>
 					<td>ISBN:</td>
-					<td><input type="text" id="isbn" name="isbn" size="20" value="${book.isbn}" /></td>
+					<td><input type="text" id="isbn" name="isbn" size="20" value="${requestScope.book.isbn}" /></td>
 				</tr>				
 				<tr>
 					<td>Publish Date:</td>
-					<td><input type="date" id="publishdate" name="publishdate" value="<fmt:formatDate pattern='yyyy-MM-dd' value='${book.publishDate}'/>  "/> </td>
+					<td><input type="date" id="publishdate" name="publishdate" value="<fmt:formatDate pattern='yyyy-MM-dd' value='${requestScope.book.publishDate}'/>  "/> </td>
 				</tr>				
 				<tr>
 					<td>Book Image:</td>
 					<td><input  type="file" id="image" name="image" size="20"/>
 						<div id="imagepreview">
-							<img alt="preview image" src="data:image/jpg;base64,${book.base64Image}" id="imagepreview__image">
+							<img alt="preview image" src="data:image/jpg;base64,${requestScope.book.base64Image}" id="imagepreview__image">
 						</div>
 					</td>
 				</tr>
 				<tr>
 					<td>Price:</td>
-					<td><input type="text" id="price" name="price" size="20" value="${book.price}" />
+					<td><input type="text" id="price" name="price" size="20" value="${requestScope.book.price}" />
 
 					</td>
 				</tr>								
@@ -109,7 +109,7 @@
 					<td>Description:</td>
 					<td>
 					
-					<textarea rows="5" cols="50" id="description" name="description" >${book.description}</textarea>
+					<textarea rows="5" cols="50" id="description" name="description" >${requestScope.book.description}</textarea>
 					</td>
 				</tr>
 				
